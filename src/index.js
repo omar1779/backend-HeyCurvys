@@ -1,19 +1,31 @@
-import express from "express"
+import express from "express";
+import cors from "cors";
 import productsRoutesDB from "./routes/product.routes.js";
 import mongoose from "mongoose";
-import * as dotenv from "dotenv"
+import * as dotenv from "dotenv";
 
 const app = express();
-app.use(express.json())
+/* This is a CORS configuration. */
+const corsOptions = {
+  origin: "http://127.0.0.1:5173",
+  optionsSuccessStatus: 200,
+};
+/*Middlewares*/
+app.use(express.json());
+app.use(cors(corsOptions));
 app.use(productsRoutesDB);
 const port = process.env.PORT || 9000;
-dotenv.config()
+dotenv.config();
 
+/* Connecting to the database. */
 mongoose
-    .connect(process.env.MONGODB_URI)
-    .then(()=>{console.log("conectado a la base de datos ,HAPPY HACKING!")})
-    .catch((error)=> console.log(error, "error mongoDB"))
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("conectado a la base de datos ,HAPPY HACKING!");
+  })
+  .catch((error) => console.log(error, "error mongoDB"));
 
-app.listen(port, ()=> {
-    console.log(`servidor levantado en el puerto ${port}`)
-})
+/* Listening to the port 9000. */
+app.listen(port, () => {
+  console.log(`servidor levantado en el puerto ${port}`);
+});

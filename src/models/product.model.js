@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
+/* Creating a schema for the product model. */
 const productModel = mongoose.Schema({
   name: {
     type: String,
