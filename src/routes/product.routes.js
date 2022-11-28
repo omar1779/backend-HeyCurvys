@@ -1,11 +1,12 @@
 import {Router} from "express";
-import { postNewProduct, getAllProduct , deleteProductID} from "../controllers/product.controller.js";
+import { postNewProduct, getAllProduct,getProductId , deleteProductID} from "../controllers/product.controller.js";
 
 const router = Router();
 
 /* The above code is creating a router for the API. */
 router.post("/products", postNewProduct)
 router.get("/get/products", getAllProduct)
+router.get("/get/products/:id", getProductId)
 router.delete("/delete", deleteProductID)
 
 export default router;

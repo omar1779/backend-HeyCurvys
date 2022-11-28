@@ -41,6 +41,17 @@ export const getAllProduct = async (req, res) => {
   }
 };
 
+export const getProductId = async (req, res) => {
+  const id = req.params.id;
+  console.log(id)
+  try {
+    const productId = await Product.findById(id);
+    res.status(200).json(productId);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 /**
  * It deletes a product from the database based on the product name. */
 export const deleteProductID = async (req, res) => {
