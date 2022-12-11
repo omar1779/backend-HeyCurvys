@@ -7,7 +7,7 @@ import * as dotenv from "dotenv";
 const app = express();
 /* This is a CORS configuration. */
 const corsOptions = {
-  origin: "http://127.0.0.1:5173",
+  origin: "http://localhost:5173",
   optionsSuccessStatus: 200,
 };
 /*Middlewares*/
