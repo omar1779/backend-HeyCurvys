@@ -7,7 +7,7 @@ import * as dotenv from "dotenv";
 const app = express();
 /* This is a CORS configuration. */
 const corsOptions = {
-  origin: "https://hey-curvys.vercel.app",
+  origin: "https://heycurvys.com",
   optionsSuccessStatus: 200,
 };
 /*Middlewares*/
