@@ -1,5 +1,9 @@
+import { parse } from "dotenv";
 import Product from "../models/product.model.js";
 
+function changeStringUpperCase(word) {
+  return word[0].toUpperCase() + word.slice(1);
+}
 /**
  * It creates a new product and saves it to the database. */
 export const postNewProduct = async (req, res) => {
@@ -53,11 +57,12 @@ export const getProductId = async (req, res) => {
 };
 
 export const getProductName = async (req, res) => {
-  const product = req.query.name;
+  const product = req.query.name.toString();
+  const parseName = changeStringUpperCase(product)
   console.log(product)
   try {
     const productName = await Product.findOne({
-      name : product
+      name : parseName
     });
     res.status(200).json(productName);
   } catch (error) {
