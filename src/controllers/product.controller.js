@@ -52,6 +52,19 @@ export const getProductId = async (req, res) => {
   }
 };
 
+export const getProductName = async (req, res) => {
+  const product = req.query.name;
+  console.log(product)
+  try {
+    const productName = await Product.findOne({
+      name : product
+    });
+    res.status(200).json(productName);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 /**
  * It deletes a product from the database based on the product name. */
 export const deleteProductID = async (req, res) => {
