@@ -5,9 +5,16 @@ import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 
 const app = express();
-/* This is a CORS configuration. */
+/* A function that is checking if the origin is in the whitelist. */
+const whitelist = ["https://heycurvys.com", "http://localhost:5173"];
 const corsOptions = {
-  origin: /* "https://heycurvys.com"  */"http://localhost:5173",
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   optionsSuccessStatus: 200,
 };
 /*Middlewares*/
@@ -29,6 +36,5 @@ mongoose
 app.listen(port, () => {
   console.log(`servidor levantado en el puerto ${port}`);
 });
-
 
 /* framework !== Lenguaje */
